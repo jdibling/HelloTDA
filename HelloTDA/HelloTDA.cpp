@@ -2,45 +2,13 @@
 //
 
 #include "stdafx.h"
-#include "C:\Users\JohnDibling\Desktop\TDA\TDADLL.H"
 
 
 int main()
 {
 	std::cout << "Hello, TDA" << std::endl;
-
-	const std::string tdaLibPath = "C:\\Users\\JohnDibling\\Desktop\\TDA\\TDADLL.DLL";
-	const HMODULE tdaLibMod = LoadLibraryA(tdaLibPath.c_str());
-	if (!tdaLibMod)
-	{
-		const DWORD err = GetLastError();
-		std::cerr << "*** ERROR 0x" << std::hex << err << " loading library " << tdaLibPath << " ***" << std::endl;
-
-		LPTSTR errorText = NULL;
-
-		FormatMessage(
-			// use system message tables to retrieve error text
-			FORMAT_MESSAGE_FROM_SYSTEM
-			// allocate buffer on local heap for error text
-			| FORMAT_MESSAGE_ALLOCATE_BUFFER
-			// Important! will fail otherwise, since we're not 
-			// (and CANNOT) pass insertion parameters
-			| FORMAT_MESSAGE_IGNORE_INSERTS,
-			NULL,    // unused with FORMAT_MESSAGE_FROM_SYSTEM
-			err,
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			(LPTSTR)&errorText,  // output 
-			0, // minimum size for output buffer
-			NULL);   // arguments - see note 
-
-		const std::wstring errMsg(errorText);
-		std::wcerr << "\tError: '" << errMsg << "'" << std::endl;
-
-		HeapFree(GetProcessHeap(), 0, errorText);
-	}
-
-
-
+	tda::Session tdaSession;
+	
    return 0;
 }
 
