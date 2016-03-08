@@ -2,19 +2,16 @@
 //
 
 #include "stdafx.h"
-#include "C:\Users\JohnDibling\Desktop\TDA\TDADLL.H"
 
 
 int main()
 {
 	std::cout << "Hello, TDA" << std::endl;
-
-	const std::string tdaLibPath = "C:\\Users\\JohnDibling\\Desktop\\TDA\\TDADLL.DLL";
-	const HMODULE tdaLibMod = LoadLibraryA(tdaLibPath.c_str());
-	if (!tdaLibMod)
+	tda::tdaLibMod = LoadLibraryA(tda::tdaLibPath.c_str());
+	if (!tda::tdaLibMod)
 	{
 		const DWORD err = GetLastError();
-		std::cerr << "*** ERROR 0x" << std::hex << err << " loading library " << tdaLibPath << " ***" << std::endl;
+		std::cerr << "*** ERROR 0x" << std::hex << err << " loading library " << tda::tdaLibPath << " ***" << std::endl;
 
 		LPTSTR errorText = NULL;
 
@@ -39,7 +36,9 @@ int main()
 		HeapFree(GetProcessHeap(), 0, errorText);
 	}
 
-
+	// init the session
+	const int sessionHandle = tda::InitSession(5);
+	
 
    return 0;
 }
