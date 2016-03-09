@@ -27,6 +27,9 @@
     <ClInclude Include="tda.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\stringbuilder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

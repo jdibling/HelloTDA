@@ -10,12 +10,27 @@ namespace tda
 	public:
 		Session();
 		virtual ~Session();
+		int SessionId() const { return mSessionId;  }
 
 	private:
 		const std::string mSourceAppName;
 		const int mLogLevel;
 			
 		int mSessionId;
+	};
+
+	class Subscriber
+	{
+	public:
+		Subscriber(const Session& session);
+		virtual ~Subscriber();
+		std::string tostr() const;
+	private:
+		const Session & mSession;
+		const int mSubType;
+		const int mSubHandle;
+		const int mSubscriberId;
+		static int mLastSubHandle;
 	};
 }
 
